@@ -18,25 +18,26 @@ blueprint:
 
     light_sensor:
       name: Light Sensor
-      description: Binary sensor that reports "bright" or "dim"
+      description: Your illumination sensor (sensor.porch_pir_illumination)
       selector:
         entity:
           filter:
+            - domain: sensor
             - domain: binary_sensor
 
     dim_state:
       name: "Dim State"
-      description: What state means the room is dark enough (usually "dim")
+      description: What state means the room is dark enough (e.g. "dim")
       default: "dim"
       selector:
         select:
           options:
             - "dim"
             - "bright"
-            - "on"
-            - "off"
             - "dark"
             - "low"
+            - "on"
+            - "off"
 
     light_target:
       name: Light
