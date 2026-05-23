@@ -29,6 +29,7 @@ blueprint:
       name: "Dim State"
       description: What state means the room is dark enough (e.g. "dim")
       default: "dim"
+      required: true
       selector:
         select:
           options:
