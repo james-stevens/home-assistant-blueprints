@@ -3,7 +3,7 @@ blueprint:
   name: Motion-activated Light (with Bright/Dim Sensor)
   description: Turn on a light when motion is detected and the room is dim.
   domain: automation
-  source_url: https://github.com/home-assistant/core/blob/dev/homeassistant/components/automation/blueprints/motion_light.yaml
+  source_url: https://raw.githubusercontent.com/james-stevens/home-assistant-blueprints/refs/heads/master/motion_light_dim_sensor.yaml
   author: Home Assistant (adapted)
   input:
     motion_entity:
