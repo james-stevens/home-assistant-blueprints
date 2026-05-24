@@ -76,9 +76,6 @@ actions:
       - condition: state
         entity_id: !input light_sensor
         state: !input dim_state
-      - condition: state
-        entity_id: "{{ expand(!input light_target) | map(attribute='entity_id') | list }}"
-        state: "on"
 
   - alias: "Turn on the light"
     action: light.turn_on
