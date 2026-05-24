@@ -67,7 +67,7 @@ triggers:
 
 actions:
   - alias: "Wait for the illumination to report"
-    delay: !input 1
+    delay: 1
 
   - alias: "Check if room is dim"
     condition: state
