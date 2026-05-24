@@ -1,10 +1,10 @@
 ---
 blueprint:
   name: Motion-activated Light (with Bright/Dim Sensor)
-  description: Turn on a light when motion is detected and the room is dim.
+  description: Turn on a light when motion is detected and the room is dim. Includes delay for slow-updating sensors.
   domain: automation
   source_url: https://raw.githubusercontent.com/james-stevens/home-assistant-blueprints/refs/heads/master/motion_light_dim_sensor.yaml
-  author: Home Assistant (adapted)
+  author: James Stevens (adapted from Home Assistant)
   input:
     motion_entity:
       name: Motion Sensor
@@ -27,7 +27,7 @@ blueprint:
 
     dim_state:
       name: "Dim State"
-      description: What state means the room is dark enough (e.g. "dim")
+      description: What state means the room is dark enough
       selector:
         select:
           options:
@@ -66,14 +66,19 @@ triggers:
     to: "on"
 
 actions:
-  - alias: "Wait for the illumination to report"
+  - alias: "Wait for illumination sensor to update"
     delay:
-      milliseconds: 1000
+      milliseconds: 1000          # 1 seconds - safe starting point
 
-  - alias: "Check if room is dim"
-    condition: state
-    entity_id: !input light_sensor
-    state: !input dim_state
+  - alias: "Check if room is dim (or lights are already on)"
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: !input light_sensor
+        state: !input dim_state
+      - condition: state
+        entity_id: !input light_target
+        state: "on"
 
   - alias: "Turn on the light"
     action: light.turn_on
