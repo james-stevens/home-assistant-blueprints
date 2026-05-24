@@ -10,3 +10,6 @@ which has the value `bright` or `dim`.
 
 If your light detectors behave differently, you may need to make changes, but this blurprint
 doesn't require the illumination & motion are done by a single sensor.
+
+Once the lights are one, it will keep them on so long as there is motion even when the `illumination`
+sensor reports `bright`, as this will prob be due to the lights themselves!
